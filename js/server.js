@@ -5,7 +5,10 @@ const connection = require("./connection");
 app.use((req, res, next) => {
     // res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000/posts");
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
+    );
     next();
 });
 
@@ -15,7 +18,6 @@ app.get("/posts", (req, res) => {
         res.send(result);
     });
 });
-
 
 app.listen(3000, () => {
     console.log("Funcionando na porta 3000");
