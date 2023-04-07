@@ -2,7 +2,7 @@ const url = "http://localhost:3000/posts";
 const requestMethod = {
     method: 'GET' // nao precisa nesse caso
 }
-fetch(url, requestMethod)
+    fetch(url, requestMethod)
     .then((response) => response.json())
     .then((data) => {
         const dataElement = document.getElementsByClassName("posts");
