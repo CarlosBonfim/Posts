@@ -1,9 +1,12 @@
 const express = require("express");
 const app = express();
 const connection = require("./connection");
+const bodyParser = require('body-parser')
+// const cors = require('cors')
 
+// app.use(cors())
 app.use((req, res, next) => {
-    // res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000/posts");
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000/posts");
     res.header("Access-Control-Allow-Origin", "*");
     res.header(
         "Access-Control-Allow-Headers",
@@ -11,16 +14,26 @@ app.use((req, res, next) => {
     );
     next();
 });
+app.use(bodyParser.json())
 
 app.get("/posts", (req, res) => {
-    connection.query("SELECT * FROM postagem", function (err, result) {
+    const sqlQuery = "SELECT * FROM postagem";
+    connection.query(sqlQuery, function (err, result) {
         if (err) throw err;
         res.send(result);
     });
 });
 
 
-
+app.post("/posts", (req, res) => {
+    const autor = req.body.autor;
+    const texto =  req.body.texto;
+    const sqlQuery = `INSERT INTO postagem (autor, texto) VALUES ('${autor}', '${texto}')`;
+    connection.query(sqlQuery, function(err, result){
+        if(err) throw err;
+        res.send(result);
+    })
+});
 
 app.listen(3000, () => {
     console.log("Funcionando na porta 3000");

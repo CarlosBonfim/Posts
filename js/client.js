@@ -1,8 +1,37 @@
 const url = "http://localhost:3000/posts";
-const requestMethod = {
-    method: 'GET' // nao precisa nesse caso
+
+function submitClick(){
+    const forms = document.getElementsByClassName('formContent')
+    for(let i=0; i < forms.length; i++){
+        forms[i].addEventListener('submit', function(e) {
+            let formData = new FormData(forms[i]);
+            let data = {};
+            for(let [key, value] of formData.entries()){
+                data[key] = value;
+            }
+            e.preventDefault()
+            
+            fetch(url,{
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers:{
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(res => {
+                if(res.ok){
+                    console.log('tudo certo por aqui');
+                }
+                else{
+                    console.log('Nada certo por aqui')
+                }
+            })
+            .catch(err => console.log(`Houve um erro: ${err}`))
+        })
+    }
 }
-    fetch(url, requestMethod)
+
+fetch(url)
     .then((response) => response.json())
     .then((data) => {
         const dataElement = document.getElementsByClassName("posts");
