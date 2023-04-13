@@ -1,7 +1,13 @@
+:root{
+    --gray: #2c2c2c;
+    --white:  #ffffff;
+    --battleshipGray: #848482;
+    --lightBlue: #1d9bf0;
+    --grayWolf: #504A4B;
+}
 *{
     margin: 0;
     padding: 0;
-    border: solid 1px red;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -9,7 +15,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #2c2c2c;
+    background-color: var(--gray);
     margin: 0;
     padding: 0;
     width: 100%;
@@ -18,25 +24,25 @@ body{
 .main{
     display: flex;
     flex-direction: column;
-    padding: 1px;
-    background-color: #292929;
+    padding: 15px;
+    background-color: var(--gray);
     width: 50%;
     justify-content: center;
     height: 80%;
-    color: #ffffff;
+    color: var(--white);
     margin: 10px;
+    overflow: hidden;
 }
 .header{
     position: fixed;
     top: 0;
-    background-color: #222222;
+    background-color: var(--battleshipGray);
     margin: 0;
     padding: 1px;
     width: 100%;
-
 }
 .title-header{
-    color: #fcfcfc;
+    color: var(--white);
     margin: 2px 350px 2px 350px;
     display: flex;
     align-items: center;
@@ -69,7 +75,7 @@ body{
 }
 .posts{
     display: flex;
-    border: solid 1px #c4c4c4;
+    border: solid 1px var(--battleshipGray);
     border-radius: 5px;
     flex-direction: column;
     width: 100%;
@@ -90,17 +96,44 @@ body{
     justify-content: start;
     padding: 5px;
     margin: 5px;
-    border: solid 1px black;
+    border: solid 1px var(--battleshipGray);
     border-radius: 5px;
 }
 .footer{
    left: 0;
    bottom: 0;
    width: 100%;
-   background-color: gray;
-   color: white;
+   background-color: var(--battleshipGray);
+   color: var(--white);
    text-align: center;
    position: fixed;
    padding-top: 2px;
    margin-top: 2px;
+}
+.newPostButton{
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    background-color: #1d9bf0;
+    color: var(--white);
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    height: 50px;
+    width: 50px;
+}
+.newPostButton:hover{
+    background-color: #0d8ee4;
+    /* transition: opacity 0s; */
+}
+.newPostButton:active{
+    background-color: #00568f;
+}
+.formPost{
+    width: 100%;
+    height: 55vh;
+    margin-top: 10vh;
+    border: none;
 }
