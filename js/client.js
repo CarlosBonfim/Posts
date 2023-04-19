@@ -20,10 +20,7 @@ function submitClick(){
             })
             .then(res => {
                 if(res.ok){
-                    console.log('tudo certo por aqui');
-                }
-                else{
-                    console.log('Nada certo por aqui')
+                    console.log(`tudo certo por aqui`);
                 }
             })
             .catch(err => console.log(`Houve um erro: ${err}`))

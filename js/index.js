@@ -20,3 +20,4 @@ function renderPostForm() {
     </form>`;
     main.appendChild(postForm);
 }
+
