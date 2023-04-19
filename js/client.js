@@ -22,7 +22,7 @@ function submitClick(){
                 if(res.ok){
                     console.log(`tudo certo por aqui`);
                 }
-            })
+            }).then(backPosts())
             .catch(err => console.log(`Houve um erro: ${err}`))
         })
     }

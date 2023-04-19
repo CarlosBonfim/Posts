@@ -21,3 +21,8 @@ function renderPostForm() {
     main.appendChild(postForm);
 }
 
+function backPosts(){
+    const postForm = document.getElementsByClassName('formPost')[0]
+    postForm.style.display = "none";
+    content.style.display = "block"
+}
