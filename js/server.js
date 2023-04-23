@@ -1,10 +1,10 @@
 const express = require("express");
 const app = express();
 const connection = require("./connection");
-const bodyParser = require('body-parser')
-const cors = require('cors')
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
-app.use(cors())
+app.use(cors());
 // app.use((req, res, next) => {
 //     res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000/posts");
 //     res.header("Access-Control-Allow-Origin", "*");
@@ -14,27 +14,26 @@ app.use(cors())
 //     );
 //     next();
 // });
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 app.get("/posts", (req, res) => {
-    const sqlQuery = "SELECT * FROM postagem";
-    connection.query(sqlQuery, function (err, result) {
-        if (err) throw err;
-        res.send(result);
-    });
+  const sqlQuery = "SELECT * FROM postagem";
+  connection.query(sqlQuery, function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
 });
 
-
 app.post("/posts", (req, res) => {
-    const autor = req.body.autor;
-    const texto =  req.body.texto;
-    const sqlQuery = `INSERT INTO postagem (autor, texto) VALUES ('${autor}', '${texto}')`;
-    connection.query(sqlQuery, function(err, result){
-        if(err) throw err;
-        res.send(result);
-    })
+  const autor = req.body.autor;
+  const texto = req.body.texto;
+  const sqlQuery = `INSERT INTO postagem (autor, texto) VALUES ('${autor}', '${texto}')`;
+  connection.query(sqlQuery, function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
 });
 
 app.listen(3000, () => {
-    console.log("Funcionando na porta 3000");
+  console.log("Funcionando na porta 3000");
 });
