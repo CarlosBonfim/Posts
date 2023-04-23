@@ -1,10 +1,12 @@
 const newPostButton = document.getElementsByClassName("newPostButton");
 const main = document.getElementsByClassName("main")[0];
 const content = document.getElementsByClassName("content")[0];
-
+const arrowBack = document.getElementById("backToMain");
+// let formIstrue = false;
 function showForm() {
     content.style.display = "none";
     renderPostForm();
+    arrowBack.style.display = "block";
 }
 
 function renderPostForm() {
@@ -21,8 +23,9 @@ function renderPostForm() {
     main.appendChild(postForm);
 }
 
-function backPosts(){
-    const postForm = document.getElementsByClassName('formPost')[0]
-    postForm.style.display = "none";
-    content.style.display = "block"
+function backPosts() {
+    const postForm = document.getElementsByClassName("formPost")[0];
+    postForm.parentNode.removeChild(postForm)
+    content.style.display = "block";
+    arrowBack.style.display = "none";
 }
