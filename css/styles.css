@@ -48,7 +48,7 @@ body {
   width: 100%;
 }
 .arrow {
-  width: 40vw;
+  width: 5vw;
 }
 #backToMain {
   display: none;
@@ -113,6 +113,21 @@ body {
   margin: 5px;
   border: solid 1px var(--battleshipGray);
   border-radius: 5px;
+}
+.post_buttons{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  /* width: 20px;
+  height: 20px; */
+  padding-top: 2px;
+  margin: 2px;
+}
+.post_buttons > i{
+  margin-top: 5px;
+}
+.post_buttons > i:nth-child(2){
+  margin-left: 15px;
 }
 .footer {
   left: 0;

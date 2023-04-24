@@ -24,9 +24,34 @@ function submitClick() {
           }
         })
         .then(backPosts)
+        .then(() => {
+          location.reload()
+        })
         .catch((err) => console.log(`Houve um erro: ${err}`));
     });
   }
+}
+
+function deleteClick(element){
+  let id = element.dataset.id;
+  console.log(id)
+  fetch(url,{
+    method: 'DELETE',
+    headers:{
+      'Content-Type': "application/json"
+    },
+    body: JSON.stringify({
+      id: id
+    })
+  }).then((res) => {
+    if(res.ok){
+      console.log('apagou com sucesso')
+    }
+  })
+  .then(() => {
+    location.reload()
+  })
+  .catch((err) => console.log(`Houve um erro: ${err}`))
 }
 
 fetch(url)
@@ -36,10 +61,14 @@ fetch(url)
     data.forEach((element) => {
       const postContent = document.createElement("div");
       postContent.classList.add("post_content");
-      postContent.innerHTML = `<h3 class="author_post">${element.autor}</h3><p class="post_text">${element.texto}</p>`;
+      postContent.innerHTML = `<h3 class="author_post">${element.autor}</h3><p class="post_text">${element.texto}</p><div class="post_buttons">
+      <i class="fa-sharp fa-solid fa-trash trash" onclick="deleteClick(this)" data-id="${element.id}"></i>	
+      <i class="fa-solid fa-pen-to-square" data-id="${element.id}"></i>
+    </div>`;
       for (let dataElements of dataElement) {
         dataElements.appendChild(postContent.cloneNode(true));
       }
     });
   })
   .catch((err) => console.log(`Caiu no catch: ${err}`));
+

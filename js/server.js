@@ -34,6 +34,16 @@ app.post("/posts", (req, res) => {
   });
 });
 
+app.delete("/posts", (req,res) => {
+  const id = req.body.id;
+  const sqlQuery = `DELETE from postagem where id = ${id}`
+  connection.query(sqlQuery, function (err, result){
+    if (err) throw err;
+    res.send(id)
+  })
+})
+
+
 app.listen(3000, () => {
   console.log("Funcionando na porta 3000");
 });
