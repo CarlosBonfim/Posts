@@ -42,12 +42,12 @@
 						assumenda reiciendis aspernatur.</p>
 					<div class="post_buttons">
 						<i class="fa-sharp fa-solid fa-trash trash" onclick="deleteClick(this)" data-id="0"></i>	
-						<i class="fa-solid fa-pen-to-square" data-id="0"></i>
+						<i class="fa-solid fa-pen-to-square" onclick="showForm('put', this)" data-id="0"></i>
 					</div>
 				</div>
 			</div>
 			<div class="new_post">
-				<button onclick="showForm()" class="newPostButton" title="Nova postagem"><i
+				<button onclick="showForm('post')" class="newPostButton" title="Nova postagem"><i
 						class="fa-solid fa-plus"></i></button>
 			</div>
 		</div>

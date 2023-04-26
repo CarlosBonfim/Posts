@@ -3,10 +3,15 @@ const main = document.getElementsByClassName("main")[0];
 const content = document.getElementsByClassName("content")[0];
 const arrowBack = document.getElementById("backToMain");
 // let formIstrue = false;
-function showForm() {
+function showForm(typeRequest, element) {
   content.style.display = "none";
-  renderPostForm();
   arrowBack.style.display = "block";
+  if(typeRequest === "post"){
+    renderPostForm();
+  }
+  else if(typeRequest === "put"){
+    renderPutForm(element)
+  }
 }
 
 function renderPostForm() {
@@ -28,4 +33,8 @@ function backPosts() {
   postForm.parentNode.removeChild(postForm);
   content.style.display = "block";
   arrowBack.style.display = "none";
+}
+
+function renderPutForm(element){
+  editPost(element)
 }

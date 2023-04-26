@@ -43,6 +43,27 @@ app.delete("/posts", (req,res) => {
   })
 })
 
+app.get("/posts/:id", (req, res) => {
+  const id = req.params.id;
+  const sqlQuery = `SELECT * FROM postagem where id = ${id}`;
+  connection.query(sqlQuery, function(err, result){
+    if (err) throw err;
+    res.send(result)
+  })
+})
+
+app.put("/posts", (req,res) => {
+  const id = req.body.id;
+  const autor = req.body.autor;
+  const texto = req.body.texto;
+  const arr = [id, autor, texto]
+  const sqlQuery = `UPDATE postagem SET autor = '${autor}', texto = '${texto}' WHERE  id = '${id}' `
+  connection.query(sqlQuery, function (err, result) {
+    if(err) throw err;
+    res.send(`A query inserida foi: ${sqlQuery}`)
+  })
+
+})
 
 app.listen(3000, () => {
   console.log("Funcionando na porta 3000");
