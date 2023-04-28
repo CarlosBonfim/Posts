@@ -6,11 +6,10 @@ const arrowBack = document.getElementById("backToMain");
 function showForm(typeRequest, element) {
   content.style.display = "none";
   arrowBack.style.display = "block";
-  if(typeRequest === "post"){
+  if (typeRequest === "post") {
     renderPostForm();
-  }
-  else if(typeRequest === "put"){
-    editPost(element)
+  } else if (typeRequest === "put") {
+    editPost(element);
   }
 }
 
@@ -34,4 +33,3 @@ function backPosts() {
   content.style.display = "block";
   arrowBack.style.display = "none";
 }
-

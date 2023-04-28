@@ -25,23 +25,23 @@ function submitClick() {
         })
         .then(backPosts)
         .then(() => {
-          location.reload()
+          location.reload();
         })
         .catch((err) => console.log(`Houve um erro: ${err}`));
     });
   }
 }
 
-function submitEditClick(){
-  const forms = document.getElementsByClassName('formContent') 
+function submitEditClick() {
+  const forms = document.getElementsByClassName("formContent");
   for (let i = 0; i < forms.length; i++) {
     forms[i].addEventListener("submit", function (e) {
       let formData = new FormData(forms[i]);
       let data = {};
-       console.log(formData)
+      console.log(formData);
       for (let [key, value] of formData.entries()) {
         data[key] = value;
-        console.log(data[key])
+        console.log(data[key]);
       }
       e.preventDefault();
 
@@ -59,44 +59,45 @@ function submitEditClick(){
         })
         .then(backPosts)
         .then(() => {
-          location.reload()
+          location.reload();
         })
         .catch((err) => console.log(`Houve um erro: ${err}`));
-     });
+    });
   }
 }
 
-function deleteClick(element){
+function deleteClick(element) {
   let id = element.dataset.id;
-  console.log(id)
-  fetch(url,{
-    method: 'DELETE',
-    headers:{
-      'Content-Type': "application/json"
+  console.log(id);
+  fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      id: id
+      id: id,
+    }),
+  })
+    .then((res) => {
+      if (res.ok) {
+        console.log("apagou com sucesso");
+      }
     })
-  }).then((res) => {
-    if(res.ok){
-      console.log('apagou com sucesso')
-    }
-  })
-  .then(() => {
-    location.reload()
-  })
-  .catch((err) => console.log(`Houve um erro: ${err}`))
+    .then(() => {
+      location.reload();
+    })
+    .catch((err) => console.log(`Houve um erro: ${err}`));
 }
 
-function editPost(element){
-  let id = element.dataset.id
-  console.log(id)
-  fetch(url+`/${id}`)
+function editPost(element) {
+  let id = element.dataset.id;
+  console.log(id);
+  fetch(url + `/${id}`)
     .then((response) => response.json())
     .then((data) => data[0])
     .then((values) => {
-      const postForm = document.createElement('div')
-      postForm.classList.add('formPost')
+      const postForm = document.createElement("div");
+      postForm.classList.add("formPost");
       postForm.innerHTML = `<form class="formContent">
       <input type="hidden" name="id" value="${values.id}" >
       <label for="author" class="authorPost">Autor</label><br>
@@ -105,8 +106,8 @@ function editPost(element){
       <textarea class="textPost" placeholder="${values.texto}" name="texto" maxlength="120"></textarea><br><br>
       <input type="submit" id="submitButton" value="Enviar" onclick="submitEditClick()">
       </form>`;
-      main.appendChild(postForm)
-    })
+      main.appendChild(postForm);
+    });
 }
 
 fetch(url)
@@ -126,4 +127,3 @@ fetch(url)
     });
   })
   .catch((err) => console.log(`Caiu no catch: ${err}`));
-
