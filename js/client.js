@@ -102,7 +102,7 @@ function editPost(element){
       <label for="author" class="authorPost">Autor</label><br>
       <input type="text" class="authorPost" placeholder="${values.autor}" maxlength="10" name="autor"><br>
       <label for="text " class="textPost">Sua mensagem</label><br>
-      <textarea class="textPost" placeholder="${values.texto}" name="texto"maxlength="120"></textarea><br><br>
+      <textarea class="textPost" placeholder="${values.texto}" name="texto" maxlength="120"></textarea><br><br>
       <input type="submit" id="submitButton" value="Enviar" onclick="submitEditClick()">
       </form>`;
       main.appendChild(postForm)
