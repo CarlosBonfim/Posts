@@ -38,8 +38,10 @@ function submitEditClick(){
     forms[i].addEventListener("submit", function (e) {
       let formData = new FormData(forms[i]);
       let data = {};
+       console.log(formData)
       for (let [key, value] of formData.entries()) {
         data[key] = value;
+        console.log(data[key])
       }
       e.preventDefault();
 
@@ -55,12 +57,12 @@ function submitEditClick(){
             console.log(res);
           }
         })
-        // .then(backPosts)
-        // .then(() => {
-        //   location.reload()
-        // })
+        .then(backPosts)
+        .then(() => {
+          location.reload()
+        })
         .catch((err) => console.log(`Houve um erro: ${err}`));
-    });
+     });
   }
 }
 
@@ -96,10 +98,11 @@ function editPost(element){
       const postForm = document.createElement('div')
       postForm.classList.add('formPost')
       postForm.innerHTML = `<form class="formContent">
+      <input type="hidden" name="id" value="${values.id}" >
       <label for="author" class="authorPost">Autor</label><br>
-      <input type="text" class="authorPost" placeholder="${values.autor}" name="autor"><br>
+      <input type="text" class="authorPost" placeholder="${values.autor}" maxlength="10" name="autor"><br>
       <label for="text " class="textPost">Sua mensagem</label><br>
-      <textarea class="textPost" placeholder="${values.texto}" name="texto"></textarea><br><br>
+      <textarea class="textPost" placeholder="${values.texto}" name="texto"maxlength="120"></textarea><br><br>
       <input type="submit" id="submitButton" value="Enviar" onclick="submitEditClick()">
       </form>`;
       main.appendChild(postForm)

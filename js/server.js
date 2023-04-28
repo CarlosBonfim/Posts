@@ -56,13 +56,12 @@ app.put("/posts", (req,res) => {
   const id = req.body.id;
   const autor = req.body.autor;
   const texto = req.body.texto;
-  const arr = [id, autor, texto]
-  const sqlQuery = `UPDATE postagem SET autor = '${autor}', texto = '${texto}' WHERE  id = '${id}' `
+  const sqlQuery = `UPDATE postagem SET autor = '${autor}', texto = '${texto}' WHERE  id = ${id} `
   connection.query(sqlQuery, function (err, result) {
     if(err) throw err;
-    res.send(`A query inserida foi: ${sqlQuery}`)
+    res.send(result)
   })
-
+  
 })
 
 app.listen(3000, () => {

@@ -10,7 +10,7 @@ function showForm(typeRequest, element) {
     renderPostForm();
   }
   else if(typeRequest === "put"){
-    renderPutForm(element)
+    editPost(element)
   }
 }
 
@@ -35,6 +35,3 @@ function backPosts() {
   arrowBack.style.display = "none";
 }
 
-function renderPutForm(element){
-  editPost(element)
-}
