@@ -69,24 +69,27 @@ function submitEditClick() {
 function deleteClick(element) {
   let id = element.dataset.id;
   console.log(id);
-  fetch(url, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      id: id,
-    }),
-  })
-    .then((res) => {
-      if (res.ok) {
-        console.log("apagou com sucesso");
-      }
+  if(confirm("Você quer realmente apagar isso ?")){
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: id,
+      }),
     })
-    .then(() => {
-      location.reload();
-    })
-    .catch((err) => console.log(`Houve um erro: ${err}`));
+      .then((res) => {
+        if (res.ok) {
+          console.log("apagou com sucesso");
+        }
+      })
+      .then(() => {
+        location.reload();
+      })
+      .catch((err) => console.log(`Houve um erro: ${err}`));
+  }
+
 }
 
 function editPost(element) {

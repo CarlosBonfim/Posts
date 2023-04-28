@@ -16,7 +16,6 @@ function showForm(typeRequest, element) {
 function renderPostForm() {
   const postForm = document.createElement("div");
   postForm.classList.add("formPost");
-  // postForm.innerHTML = `<iframe src="pages/form.html"></iframe>`
   postForm.innerHTML = `<form class="formContent">
     <label for="author" class="authorPost">Autor</label><br>
     <input type="text" class="authorPost" maxlength="10" name="autor"><br>
