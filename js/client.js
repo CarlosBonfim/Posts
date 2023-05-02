@@ -1,6 +1,7 @@
 const url = "http://localhost:3000/posts";
 
-function submitClick() {
+//funcao que recebe o envio do form e manda pra api
+function submitClick() { 
   const forms = document.getElementsByClassName("formContent");
   for (let i = 0; i < forms.length; i++) {
     forms[i].addEventListener("submit", function (e) {
@@ -18,11 +19,6 @@ function submitClick() {
           "Content-Type": "application/json",
         },
       })
-        .then((res) => {
-          if (res.ok) {
-            console.log(`tudo certo por aqui`);
-          }
-        })
         .then(backPosts)
         .then(() => {
           location.reload();
@@ -31,17 +27,36 @@ function submitClick() {
     });
   }
 }
+//funcao que exibe o form de edicao
+function editPost(element) { 
+  let id = element.dataset.id;
+  fetch(url + `/${id}`)
+    .then((response) => response.json())
+    .then((data) => data[0])
+    .then((values) => {
+      const postForm = document.createElement("div");
+      postForm.classList.add("formPost");
+      postForm.innerHTML = `<form class="formContent">
+      <input type="hidden" name="id" value="${values.id}" >
+      <label for="author" class="authorPost">Autor</label><br>
+      <input type="text" class="authorPost" placeholder="${values.autor}" maxlength="10" name="autor" readonly><br>
+      <label for="text " class="textPost">Sua mensagem</label><br>
+      <textarea class="textPost" placeholder="" name="texto" maxlength="120">${values.texto}</textarea><br><br>
+      <input type="submit" id="submitButton" value="Enviar" onclick="submitEditClick()">
+      </form>`;
+      main.appendChild(postForm);
+    });
+}
 
+//funcao que recebe o envio do form edit para api
 function submitEditClick() {
   const forms = document.getElementsByClassName("formContent");
   for (let i = 0; i < forms.length; i++) {
     forms[i].addEventListener("submit", function (e) {
       let formData = new FormData(forms[i]);
       let data = {};
-      console.log(formData);
       for (let [key, value] of formData.entries()) {
         data[key] = value;
-        console.log(data[key]);
       }
       e.preventDefault();
 
@@ -52,11 +67,6 @@ function submitEditClick() {
           "Content-Type": "application/json",
         },
       })
-        .then((res) => {
-          if (res.ok) {
-            console.log(res);
-          }
-        })
         .then(backPosts)
         .then(() => {
           location.reload();
@@ -66,9 +76,9 @@ function submitEditClick() {
   }
 }
 
-function deleteClick(element) {
+//funcao delete 
+function deleteClick(element) { 
   let id = element.dataset.id;
-  console.log(id);
   if(confirm("Você quer realmente apagar isso ?")){
     fetch(url, {
       method: "DELETE",
@@ -79,11 +89,6 @@ function deleteClick(element) {
         id: id,
       }),
     })
-      .then((res) => {
-        if (res.ok) {
-          console.log("apagou com sucesso");
-        }
-      })
       .then(() => {
         location.reload();
       })
@@ -92,27 +97,7 @@ function deleteClick(element) {
 
 }
 
-function editPost(element) {
-  let id = element.dataset.id;
-  console.log(id);
-  fetch(url + `/${id}`)
-    .then((response) => response.json())
-    .then((data) => data[0])
-    .then((values) => {
-      const postForm = document.createElement("div");
-      postForm.classList.add("formPost");
-      postForm.innerHTML = `<form class="formContent">
-      <input type="hidden" name="id" value="${values.id}" >
-      <label for="author" class="authorPost">Autor</label><br>
-      <input type="text" class="authorPost" placeholder="${values.autor}" maxlength="10" name="autor"><br>
-      <label for="text " class="textPost">Sua mensagem</label><br>
-      <textarea class="textPost" placeholder="${values.texto}" name="texto" maxlength="120"></textarea><br><br>
-      <input type="submit" id="submitButton" value="Enviar" onclick="submitEditClick()">
-      </form>`;
-      main.appendChild(postForm);
-    });
-}
-
+//fetch que busca e exibe os dados na home
 fetch(url)
   .then((response) => response.json())
   .then((data) => {
