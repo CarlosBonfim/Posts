@@ -1,7 +1,7 @@
 const url = "http://localhost:3000/posts";
 
 //funcao que recebe o envio do form e manda pra api
-function submitClick() { 
+function submitClick() {
   const forms = document.getElementsByClassName("formContent");
   for (let i = 0; i < forms.length; i++) {
     forms[i].addEventListener("submit", function (e) {
@@ -28,7 +28,7 @@ function submitClick() {
   }
 }
 //funcao que exibe o form de edicao
-function editPost(element) { 
+function editPost(element) {
   let id = element.dataset.id;
   fetch(url + `/${id}`)
     .then((response) => response.json())
@@ -76,10 +76,10 @@ function submitEditClick() {
   }
 }
 
-//funcao delete 
-function deleteClick(element) { 
+//funcao delete
+function deleteClick(element) {
   let id = element.dataset.id;
-  if(confirm("Você quer realmente apagar isso ?")){
+  if (confirm("Você quer realmente apagar isso ?")) {
     fetch(url, {
       method: "DELETE",
       headers: {
@@ -94,7 +94,6 @@ function deleteClick(element) {
       })
       .catch((err) => console.log(`Houve um erro: ${err}`));
   }
-
 }
 
 //fetch que busca e exibe os dados na home

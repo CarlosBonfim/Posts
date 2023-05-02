@@ -2,7 +2,8 @@ const newPostButton = document.getElementsByClassName("newPostButton");
 const main = document.getElementsByClassName("main")[0];
 const content = document.getElementsByClassName("content")[0];
 const arrowBack = document.getElementById("backToMain");
-// let formIstrue = false;
+
+//funcao que exibe o formuladrio determinado
 function showForm(typeRequest, element) {
   content.style.display = "none";
   arrowBack.style.display = "block";
@@ -13,6 +14,7 @@ function showForm(typeRequest, element) {
   }
 }
 
+//funcao que exibe o formulario de criacao de post
 function renderPostForm() {
   const postForm = document.createElement("div");
   postForm.classList.add("formPost");
@@ -26,6 +28,7 @@ function renderPostForm() {
   main.appendChild(postForm);
 }
 
+//funcao que fecha o form e volta a exibir os dados
 function backPosts() {
   const postForm = document.getElementsByClassName("formPost")[0];
   postForm.parentNode.removeChild(postForm);
