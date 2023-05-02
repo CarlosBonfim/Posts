@@ -45,9 +45,8 @@ app.get("/posts/:id", (req, res) => {
 
 app.put("/posts", (req, res) => {
   const id = req.body.id;
-  const autor = req.body.autor;
   const texto = req.body.texto;
-  const sqlQuery = `UPDATE postagem SET autor = '${autor}', texto = '${texto}' WHERE  id = ${id} `;
+  const sqlQuery = `UPDATE postagem SET texto = '${texto}' WHERE  id = ${id} `;
   connection.query(sqlQuery, function (err, result) {
     if (err) throw err;
     res.send(result);
