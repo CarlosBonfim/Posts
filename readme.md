@@ -6,4 +6,4 @@ Para iniciar
 - Configure um banco de dados mysql no arquivo js/connection.js
 - Inicie o servidor usando o nodemon (npm start)
 - A pagina inicial será exibida no arquivo index.js 
-    * Pode usar um servidor virtual para abrir a pagina ou não
+    
